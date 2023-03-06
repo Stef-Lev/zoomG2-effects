@@ -1,18 +1,17 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 export interface IPatch extends mongoose.Document {
-    id: string;
-    name: string;
-    inPedal: boolean;
-    pedalCode: string;
-    low: number;
-    mid: number;
-    high: number;
-  }
+  id: string;
+  name: string;
+  inPedal: boolean;
+  pedalCode: string;
+  low: number;
+  mid: number;
+  high: number;
+}
 
-  export interface IUser extends mongoose.Document {
-    username: string;
-    email: string;
-    patches: IPatch[];
-  }
-  
+export interface IUser extends mongoose.Document {
+  username: string;
+  email: string;
+  patches: IPatch[];
+}
