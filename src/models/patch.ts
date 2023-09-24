@@ -1,7 +1,6 @@
-import mongoose from "mongoose";
-import { IPatch } from "@/types/types";
+import { Schema, model, models } from "mongoose";
 
-const patchSchema = new mongoose.Schema({
+const PatchSchema = new Schema({
   id: String,
   name: String,
   inPedal: Boolean,
@@ -301,4 +300,5 @@ const patchSchema = new mongoose.Schema({
   }
 });
 
-export const Patch = mongoose.model<IPatch>("Patch", patchSchema);
+const Patch = models.Patch || model("Patch", PatchSchema);
+export default Patch;
