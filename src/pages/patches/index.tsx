@@ -1,8 +1,15 @@
-import { Box, Button, Heading, Image, Center, Link } from "@chakra-ui/react";
+import { Box, Button, Heading, Image, Center } from "@chakra-ui/react";
+import { GetServerSidePropsContext } from "next";
 import { getAllMethod } from "@/helpers/services";
+import { IPatch } from "@/types/types";
+import PatchItem from "@/components/PatchItem";
 
-const Home = ({ data }) => {
-  console.log(data.patches);
+interface HomeProps {
+  patches: IPatch[];
+}
+
+const Home = ({ patches }: HomeProps) => {
+  console.log(patches);
   return (
     <>
       <Box display="flex" flexDirection="column" alignItems="center">
@@ -14,13 +21,15 @@ const Home = ({ data }) => {
           <Button>Pedal</Button>
           <Button>Patches Catalog</Button>
         </Center>
-        <Box>
-          {data.patches.length > 0 &&
-            data.patches.map(patch => (
-              <Link href={`/patches/${patch._id}`} key={patch._id}>
-                {patch.name}
-              </Link>
-            ))}
+        <Box
+          width="100%"
+          display="flex"
+          flexDirection="column"
+          gap="12px"
+          my="16px"
+        >
+          {patches.length > 0 &&
+            patches.map(patch => <PatchItem key={patch._id} patch={patch} />)}
         </Box>
       </Box>
     </>
@@ -28,7 +37,7 @@ const Home = ({ data }) => {
 };
 export default Home;
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   try {
     let data = [];
 
@@ -44,7 +53,7 @@ export async function getServerSideProps(context) {
 
     return {
       props: {
-        data
+        patches: data.patches
       }
     };
   } catch (error) {

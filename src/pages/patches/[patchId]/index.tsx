@@ -1,12 +1,19 @@
 import { getOneMethod } from "@/helpers/services";
-const PatchDetailPage = ({ patch }) => {
+import { GetServerSidePropsContext } from "next";
+import { IPatch } from "@/types/types";
+
+interface PatchDetailPageProps {
+  patch: IPatch;
+}
+
+const PatchDetailPage = ({ patch }: PatchDetailPageProps) => {
   console.log(patch);
   return <div>Patch Details page</div>;
 };
 
 export default PatchDetailPage;
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { patchId } = context.query;
 
   try {
@@ -29,11 +36,6 @@ export async function getServerSideProps(context) {
       }
     };
   } catch (error) {
-    return {
-      redirect: {
-        destination: "/error",
-        permanent: false
-      }
-    };
+    console.log(error);
   }
 }

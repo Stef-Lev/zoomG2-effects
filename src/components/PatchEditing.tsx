@@ -9,14 +9,9 @@ import {
   useColorModeValue,
   useDisclosure
 } from "@chakra-ui/react";
-import PasswordEditor from "@/components/PasswordEditor";
 import { useRouter } from "next/router";
 import { postMethod, updateMethod } from "@/helpers/services";
-import TopNav from "./TopNav";
-import AlertModal from "./AlertModal";
-import showMsg from "@/helpers/showMsg";
 import isDeepEqual from "deep-equal";
-import { IRecordEditingProps, IRecordEditData } from "@/types/components";
 import { useNavigationObserver } from "@/hooks/useNavigationObserver";
 
 const PatchEditing = ({ type, record, user }) => {

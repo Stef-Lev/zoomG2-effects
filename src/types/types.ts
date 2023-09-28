@@ -111,7 +111,7 @@ export interface ReverbSettings {
   };
 }
 
-export interface IPatchSchema extends mongoose.Document {
+export interface IPatch extends mongoose.Document {
   id: string;
   name: string;
   inPedal: boolean;
