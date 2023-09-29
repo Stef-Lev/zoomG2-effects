@@ -1,10 +1,17 @@
 import { extendTheme } from "@chakra-ui/react";
-import "./styles/fonts.css";
 
 const theme = extendTheme({
   fonts: {
     main: `'UbuntuRegular', sans-serif`,
     pedalCode: `'FrozenCrystal', sans-serif`
+  },
+  styles: {
+    global: {
+      "html, body": {
+        fontFamily: `'UbuntuRegular', sans-serif`,
+        background: "#1b2029"
+      }
+    }
   },
   colors: {
     brand: {
@@ -18,7 +25,7 @@ const theme = extendTheme({
     dark: { bg: "#171923", color: "#fafafa" },
     light: { bg: "#fafafa", color: "#171923" },
     gray: { 400: "#919394", 700: "#575757", 800: "#474747" },
-    red: {
+    pedalRed: {
       100: "#ef3e36",
       200: "#d63a47"
     },

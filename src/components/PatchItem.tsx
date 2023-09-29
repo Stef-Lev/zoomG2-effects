@@ -1,6 +1,7 @@
 import { IPatch } from "@/types/types";
-import { Box } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import styles from "../styles/fonts.module.css";
 interface PatchItemProps {
   patch: IPatch;
 }
@@ -28,7 +29,9 @@ const PatchItem = ({ patch }: PatchItemProps) => {
         <Box w="10px" h="10px" bg="red.400" borderRadius="50%"></Box>
         <Box w="10px" h="10px" bg="red.400" borderRadius="50%"></Box>
       </Box>
-      <Box fontStyle="pedalCode">{patch.pedalCode}</Box>
+      <Box fontFamily="pedalCode" color="pedalRed.100" fontSize="30px">
+        {patch.pedalCode}
+      </Box>
       {patch.name}
     </Box>
   );

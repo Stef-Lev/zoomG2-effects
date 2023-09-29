@@ -6,12 +6,12 @@ const Fonts = () => (
       @font-face {
         font-family: 'UbuntuRegular';
         font-style: normal;
-        src: url("./Ubuntu-Regular.ttf") format("truetype")
+        src: url("/fonts/ubuntuRegular.ttf") format("truetype")
       }
       @font-face {
         font-family: 'FrozenCrystal';
         font-style: normal;
-        src: url("./frozencrystal.ttf") format("truetype")
+        src: url("/fonts/frozencrystal.ttf") format("truetype")
       }
       `}
   />
