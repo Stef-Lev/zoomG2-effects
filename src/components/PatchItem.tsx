@@ -23,6 +23,7 @@ const PatchItem = ({ patch }: PatchItemProps) => {
       display="flex"
       justifyContent="space-between"
       alignItems="center"
+      cursor="pointer"
       onClick={() => router.push(`/patches/${patch._id}`)}
     >
       <Box fontWeight="bold" color="#85b8ff">

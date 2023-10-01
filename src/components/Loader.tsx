@@ -20,8 +20,8 @@ const Loader = ({
         <Spinner
           thickness={thickness}
           speed="1s"
-          emptyColor="teal.200"
-          color="teal.600"
+          emptyColor="pedalRed.200"
+          color="pedalRed.900"
           size={size}
         />
       </Center>

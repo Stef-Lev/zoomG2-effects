@@ -26,8 +26,9 @@ const theme = extendTheme({
     light: { bg: "#fafafa", color: "#171923" },
     gray: { 400: "#919394", 700: "#575757", 800: "#474747" },
     pedalRed: {
-      100: "#ef3e36",
-      200: "#d63a47"
+      100: "#f4645d",
+      200: "#ef3e36",
+      900: "#1d0002"
     },
     orange: {
       100: "#e3812b"

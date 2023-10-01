@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Flex, Box, Button } from "@chakra-ui/react";
 import { FiArrowUp } from "react-icons/fi";
 
-const ScrollTopButton: React.FC = () => {
+const ScrollTopButton = () => {
   const [showButton, setShowButton] = useState<boolean>(false);
   const [opacity, setOpacity] = useState<number>(0);
   const ScrollStart = 200;
@@ -45,10 +45,10 @@ const ScrollTopButton: React.FC = () => {
               w="60px"
               h="60px"
               borderRadius="50px"
-              background="teal.300"
+              background="pedalRed.100"
               color="white"
-              _active={{ background: "teal.300" }}
-              _hover={{ background: "teal.300" }}
+              _active={{ background: "pedalRed.200" }}
+              _hover={{ background: "pedalRed.200" }}
               opacity={opacity}
               onClick={handleScrollTop}
             >

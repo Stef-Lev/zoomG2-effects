@@ -1,4 +1,4 @@
-import { Box, Button, Heading, Image, Center } from "@chakra-ui/react";
+import { Box, Heading, Image, Center } from "@chakra-ui/react";
 import { GetServerSidePropsContext } from "next";
 import { getAllMethod } from "@/helpers/services";
 import { IPatch } from "@/types/types";
@@ -11,42 +11,42 @@ interface HomeProps {
 const Home = ({ patches }: HomeProps) => {
   console.log(patches);
   const patchesArray = [
-    "a1",
-    "a2",
-    "a3",
-    "a4",
-    "a5",
-    "a6",
-    "a7",
-    "a8",
-    "a9",
-    "b1",
-    "b2",
-    "b3",
-    "b4",
-    "b5",
-    "b6",
-    "b7",
-    "b8",
-    "b9",
-    "c1",
-    "c2",
-    "c3",
-    "c4",
-    "c5",
-    "c6",
-    "c7",
-    "c8",
-    "c9",
-    "d1",
-    "d2",
-    "d3",
-    "d4",
-    "d5",
-    "d6",
-    "d7",
-    "d8",
-    "d9",
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "A7",
+    "A8",
+    "A9",
+    "B1",
+    "B2",
+    "B3",
+    "B4",
+    "B5",
+    "B6",
+    "B7",
+    "B8",
+    "B9",
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5",
+    "C6",
+    "C7",
+    "C8",
+    "C9",
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
     "01",
     "02",
     "03",
@@ -75,17 +75,7 @@ const Home = ({ patches }: HomeProps) => {
         <Center>
           <Image alt="pedal image" w="200px" src="/pedal.png" />
         </Center>
-        <Center>
-          <Button>Pedal</Button>
-          <Button>Patches Catalog</Button>
-        </Center>
-        <Box
-          width="100%"
-          display="flex"
-          flexDirection="column"
-          gap="12px"
-          my="16px"
-        >
+        <Box width="100%" display="flex" flexDirection="column" gap="12px">
           {patches.length > 0 &&
             patches.map(patch => <PatchItem key={patch._id} patch={patch} />)}
         </Box>

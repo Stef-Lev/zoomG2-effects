@@ -26,12 +26,12 @@ const PedalCode = ({ code }: PedalCodeProps) => {
       justifyContent="center"
       alignItems="center"
       fontFamily="pedalCode"
-      color="pedalRed.100"
-      bg="#1d0002"
+      color="pedalRed.200"
+      bg="pedalRed.900"
       fontSize="30px"
       w="50px"
       h="45px"
-      borderRadius="10px"
+      borderRadius="12px"
     >
       <Box>{code}</Box>
     </Box>

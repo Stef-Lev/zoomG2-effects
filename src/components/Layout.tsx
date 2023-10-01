@@ -2,6 +2,7 @@ import { PropsWithChildren, useEffect, useState } from "react";
 import { Container } from "@chakra-ui/react";
 import Loader from "./Loader";
 import ScrollToTop from "./ScrollToTop";
+import ScrollTopButton from "./ScrollTopButton";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
@@ -38,6 +39,7 @@ const Layout = ({ children }: PropsWithChildren) => {
         <Container maxW="3xl" height="100vh" mb="90px">
           {children}
           <ScrollToTop />
+          <ScrollTopButton />
         </Container>
       )}
     </>
