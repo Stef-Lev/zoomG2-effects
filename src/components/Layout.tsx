@@ -2,7 +2,6 @@ import { PropsWithChildren, useEffect, useState } from "react";
 import { Container } from "@chakra-ui/react";
 import Loader from "./Loader";
 import ScrollToTop from "./ScrollToTop";
-import ScrollTopButton from "./ScrollTopButton";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
@@ -33,13 +32,13 @@ const Layout = ({ children }: PropsWithChildren) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       {loading ? (
         <Loader fullScreen />
       ) : (
         <Container maxW="3xl" height="100vh" mb="90px">
           {children}
           <ScrollToTop />
-          <ScrollTopButton />
         </Container>
       )}
     </>

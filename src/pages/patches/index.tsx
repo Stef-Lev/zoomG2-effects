@@ -1,8 +1,9 @@
-import { Box, Heading, Image, Center } from "@chakra-ui/react";
+import { Box, Flex, Heading, Image, Center } from "@chakra-ui/react";
 import { GetServerSidePropsContext } from "next";
 import { getAllMethod } from "@/helpers/services";
 import { IPatch } from "@/types/types";
 import PatchItem from "@/components/PatchItem";
+import ScrollTopButton from "@/components/ScrollTopButton";
 
 interface HomeProps {
   patches: IPatch[];
@@ -75,9 +76,16 @@ const Home = ({ patches }: HomeProps) => {
         <Center>
           <Image alt="pedal image" w="200px" src="/pedal.png" />
         </Center>
-        <Box width="100%" display="flex" flexDirection="column" gap="12px">
+        <Box
+          width="100%"
+          display="flex"
+          flexDirection="column"
+          gap="12px"
+          mb="30px"
+        >
           {patches.length > 0 &&
             patches.map(patch => <PatchItem key={patch._id} patch={patch} />)}
+          <ScrollTopButton />
         </Box>
       </Box>
     </>

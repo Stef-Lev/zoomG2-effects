@@ -36,7 +36,7 @@ const ScrollTopButton = () => {
       {showButton && (
         <Flex
           position="sticky"
-          bottom="75px"
+          bottom="30px"
           zIndex={1001}
           justifyContent="flex-end"
         >
