@@ -27,7 +27,7 @@ const PatchItem = ({ patch }: PatchItemProps) => {
       gap="10px"
       onClick={() => router.push(`/patches/${patch._id}`)}
     >
-      <Box fontWeight="bold" color="#85b8ff">
+      <Box fontWeight="bold" color="highlightBlue">
         <Box>{patch.name}</Box>
       </Box>
       <Box display="flex" alignItems="center">

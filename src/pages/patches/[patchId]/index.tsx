@@ -1,6 +1,9 @@
 import { getOneMethod } from "@/helpers/services";
 import { GetServerSidePropsContext } from "next";
 import { IPatch } from "@/types/types";
+import DetailsHeader from "@/components/DetailsHeader";
+import { Box, Container, Heading } from "@chakra-ui/react";
+import PowerLight from "@/components/PowerLight";
 
 interface PatchDetailPageProps {
   patch: IPatch;
@@ -8,7 +11,19 @@ interface PatchDetailPageProps {
 
 const PatchDetailPage = ({ patch }: PatchDetailPageProps) => {
   console.log(patch);
-  return <div>Patch Details page</div>;
+  return (
+    <Box>
+      <DetailsHeader />
+      <Container pt="50px">
+        <Heading as="h3" textAlign="center" color="highlightBlue">
+          {patch.name}
+        </Heading>
+        <Box>
+          <PowerLight isActive={true} />
+        </Box>
+      </Container>
+    </Box>
+  );
 };
 
 export default PatchDetailPage;

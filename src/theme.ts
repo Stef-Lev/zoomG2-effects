@@ -30,6 +30,7 @@ const theme = extendTheme({
       200: "#ef3e36",
       900: "#1d0002"
     },
+    highlightBlue: "#85b8ff",
     orange: {
       100: "#e3812b"
     },
