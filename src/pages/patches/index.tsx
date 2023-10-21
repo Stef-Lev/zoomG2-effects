@@ -4,77 +4,77 @@ import { getAllMethod } from "@/helpers/services";
 import { IPatch } from "@/types/types";
 import PatchItem from "@/components/PatchItem";
 import ScrollTopButton from "@/components/ScrollTopButton";
+import { useMemo, useState } from "react";
+import FiltersDropdown from "@/components/FIltersDropdown";
 
 interface HomeProps {
   patches: IPatch[];
 }
 
+export type FilterType = {
+  id: "all" | "in_pedal" | "archived";
+  text: string;
+};
+
 const Home = ({ patches }: HomeProps) => {
-  console.log(patches);
-  const patchesArray = [
-    "A1",
-    "A2",
-    "A3",
-    "A4",
-    "A5",
-    "A6",
-    "A7",
-    "A8",
-    "A9",
-    "B1",
-    "B2",
-    "B3",
-    "B4",
-    "B5",
-    "B6",
-    "B7",
-    "B8",
-    "B9",
-    "C1",
-    "C2",
-    "C3",
-    "C4",
-    "C5",
-    "C6",
-    "C7",
-    "C8",
-    "C9",
-    "D1",
-    "D2",
-    "D3",
-    "D4",
-    "D5",
-    "D6",
-    "D7",
-    "D8",
-    "D9",
-    "01",
-    "02",
-    "03",
-    "04",
-    "05",
-    "06",
-    "07",
-    "08",
-    "09",
-    "10",
-    "11",
-    "12",
-    "13",
-    "14",
-    "15",
-    "16",
-    "17",
-    "18",
-    "19",
-    "20"
+  const filterTypes: FilterType[] = [
+    { id: "all", text: "All" },
+    { id: "in_pedal", text: "In pedal" },
+    { id: "archived", text: "Archived" }
   ];
+  const [filter, setFilter] = useState<FilterType["id"]>("in_pedal");
+
+  function sortPatchesById(patches: IPatch[]): IPatch[] {
+    const sortedArray = patches.sort((a, b) => {
+      const idRegex = /^(0[1-9]|1[0-9]|[a-d]?[1-9])$/i;
+
+      // Ensure that 'id' property exists before attempting to match
+      const idA = a.pedalCode || "";
+      const idB = b.pedalCode || "";
+
+      const [, prefixA, numberA] = idA.match(idRegex) || [];
+      const [, prefixB, numberB] = idB.match(idRegex) || [];
+
+      // Convert prefixes to lowercase for case-insensitive comparison
+      const lowerPrefixA = prefixA ? prefixA.toLowerCase() : "";
+      const lowerPrefixB = prefixB ? prefixB.toLowerCase() : "";
+
+      if (lowerPrefixA !== lowerPrefixB) {
+        return lowerPrefixA.localeCompare(lowerPrefixB);
+      }
+      return parseInt(numberA, 10) - parseInt(numberB, 10);
+    });
+
+    return sortedArray;
+  }
+
+  const filteredPatches = useMemo(() => {
+    switch (filter) {
+      case "archived":
+        return patches.filter(patch => !patch.inPedal);
+      case "in_pedal":
+        const filtered = patches.filter(patch => patch.inPedal);
+        return sortPatchesById(filtered);
+      default:
+        return patches;
+    }
+  }, [filter, patches]);
+
+  // console.log(filteredPatches);
+
   return (
     <>
       <Box display="flex" flexDirection="column" alignItems="center">
         <Heading as="h1">ZOOM G2 EFFECTS</Heading>
         <Center>
           <Image alt="pedal image" w="200px" src="/pedal.png" />
+        </Center>
+        <Center>
+          <FiltersDropdown
+            filterTypes={filterTypes}
+            activeFilter={filter}
+            setActiveFilter={setFilter}
+          />
         </Center>
         <Box
           width="100%"
@@ -83,8 +83,10 @@ const Home = ({ patches }: HomeProps) => {
           gap="12px"
           mb="30px"
         >
-          {patches.length > 0 &&
-            patches.map(patch => <PatchItem key={patch._id} patch={patch} />)}
+          {filteredPatches.length > 0 &&
+            filteredPatches.map(patch => (
+              <PatchItem key={patch._id} patch={patch} />
+            ))}
           <ScrollTopButton />
         </Box>
       </Box>
@@ -121,3 +123,62 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     };
   }
 }
+
+const patchesArray = [
+  "A1",
+  "A2",
+  "A3",
+  "A4",
+  "A5",
+  "A6",
+  "A7",
+  "A8",
+  "A9",
+  "B1",
+  "B2",
+  "B3",
+  "B4",
+  "B5",
+  "B6",
+  "B7",
+  "B8",
+  "B9",
+  "C1",
+  "C2",
+  "C3",
+  "C4",
+  "C5",
+  "C6",
+  "C7",
+  "C8",
+  "C9",
+  "D1",
+  "D2",
+  "D3",
+  "D4",
+  "D5",
+  "D6",
+  "D7",
+  "D8",
+  "D9",
+  "01",
+  "02",
+  "03",
+  "04",
+  "05",
+  "06",
+  "07",
+  "08",
+  "09",
+  "10",
+  "11",
+  "12",
+  "13",
+  "14",
+  "15",
+  "16",
+  "17",
+  "18",
+  "19",
+  "20"
+];

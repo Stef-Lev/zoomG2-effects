@@ -2,8 +2,9 @@ import { getOneMethod } from "@/helpers/services";
 import { GetServerSidePropsContext } from "next";
 import { IPatch } from "@/types/types";
 import DetailsHeader from "@/components/DetailsHeader";
-import { Box, Container, Heading } from "@chakra-ui/react";
+import { Box, Container, Heading, Accordion } from "@chakra-ui/react";
 import PowerLight from "@/components/PowerLight";
+import EffectItem from "@/components/EffectItem";
 
 interface PatchDetailPageProps {
   patch: IPatch;
@@ -21,6 +22,9 @@ const PatchDetailPage = ({ patch }: PatchDetailPageProps) => {
         <Box>
           <PowerLight isActive={true} />
         </Box>
+        <Accordion allowMultiple>
+          <EffectItem />
+        </Accordion>
       </Container>
     </Box>
   );
