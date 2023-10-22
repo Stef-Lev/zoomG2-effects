@@ -22,20 +22,18 @@ const Home = ({ patches }: HomeProps) => {
     { id: "in_pedal", text: "In pedal" },
     { id: "archived", text: "Archived" }
   ];
-  const [filter, setFilter] = useState<FilterType["id"]>("in_pedal");
+  const [filter, setFilter] = useState("in_pedal");
 
   function sortPatchesById(patches: IPatch[]): IPatch[] {
     const sortedArray = patches.sort((a, b) => {
       const idRegex = /^(0[1-9]|1[0-9]|[a-d]?[1-9])$/i;
 
-      // Ensure that 'id' property exists before attempting to match
       const idA = a.pedalCode || "";
       const idB = b.pedalCode || "";
 
       const [, prefixA, numberA] = idA.match(idRegex) || [];
       const [, prefixB, numberB] = idB.match(idRegex) || [];
 
-      // Convert prefixes to lowercase for case-insensitive comparison
       const lowerPrefixA = prefixA ? prefixA.toLowerCase() : "";
       const lowerPrefixB = prefixB ? prefixB.toLowerCase() : "";
 

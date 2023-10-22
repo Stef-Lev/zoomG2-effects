@@ -1,10 +1,11 @@
 import { Select, Box, Text } from "@chakra-ui/react";
+import { Dispatch, SetStateAction } from "react";
 import { FilterType } from "@/pages/patches";
 import { FaFilter } from "react-icons/fa";
 type FiltersDropdownProps = {
   filterTypes: FilterType[];
-  activeFilter: FilterType;
-  setActiveFilter: () => void;
+  activeFilter: string;
+  setActiveFilter: Dispatch<SetStateAction<string>>;
 };
 const FiltersDropdown = ({
   filterTypes,
@@ -19,15 +20,11 @@ const FiltersDropdown = ({
       </Box>
 
       <Select
+        defaultValue={activeFilter}
         onChange={e => setActiveFilter(e.currentTarget.value)}
-        _selected={activeFilter}
       >
         {filterTypes.map(filter => (
-          <option
-            key={`_filter_${filter.id}`}
-            value={filter.id}
-            selected={activeFilter === filter.id}
-          >
+          <option key={`_filter_${filter.id}`} value={filter.id}>
             {filter.text}
           </option>
         ))}

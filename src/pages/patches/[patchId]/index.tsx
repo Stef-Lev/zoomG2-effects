@@ -11,7 +11,19 @@ interface PatchDetailPageProps {
 }
 
 const PatchDetailPage = ({ patch }: PatchDetailPageProps) => {
-  console.log(patch);
+  const arr = [
+    "compressor",
+    "wah_efx",
+    "znr",
+    "drive",
+    "eq",
+    "extra_eq",
+    "mod_sfx",
+    "delay",
+    "reverb"
+  ];
+  const patchSections = Object.entries(patch);
+  console.log(patchSections);
   return (
     <Box>
       <DetailsHeader />
@@ -19,9 +31,6 @@ const PatchDetailPage = ({ patch }: PatchDetailPageProps) => {
         <Heading as="h3" textAlign="center" color="highlightBlue">
           {patch.name}
         </Heading>
-        <Box>
-          <PowerLight isActive={true} />
-        </Box>
         <Accordion allowMultiple>
           <EffectItem />
         </Accordion>
