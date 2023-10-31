@@ -22,7 +22,7 @@ const PatchDetailPage = ({ patch }: PatchDetailPageProps) => {
     "delay",
     "reverb"
   ];
-  const patchSections = Object.entries(patch);
+  const patchSections = Object.entries(patch.effects);
   console.log(patchSections);
   return (
     <Box>

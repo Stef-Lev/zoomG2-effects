@@ -12,60 +12,18 @@ export interface CompressorSettings {
 export interface WahEfxSettings {
   isActive: boolean;
   settings: {
-    AW?: {
-      position_depth: "AF" | "BF";
-      rate_freq: number;
-      level_mix: number;
-    };
-    AR?: {
-      position_depth: "AF" | "BF";
-      rate_freq: number;
-      level_mix: number;
-    };
-    BS?: {
-      position_depth: number;
-      rate_freq: number;
-      level_mix: number;
-    };
-    TR?: {
-      position_depth: number;
-      rate_freq: number;
-      level_mix: string; // Assuming the enum you provided for this is a string
-    };
-    PH?: {
-      position_depth: "AF" | "BF";
-      rate_freq: number;
-      level_mix: number;
-    };
-    RG?: {
-      position_depth: "AF" | "BF";
-      rate_freq: number;
-      level_mix: number;
-    };
-    SL?: {
-      position_depth: "AF" | "BF";
-      rate_freq: number;
-      level_mix: number;
-    };
-    PU?: {
-      position_depth: "AF" | "BF";
-      rate_freq: number;
-      level_mix: number;
-    };
-    PB?: {
-      position_depth: "AF" | "BF";
-      rate_freq: number;
-      level_mix: number;
-    };
+    code: "AW" | "AR" | "BS" | "TR" | "PH" | "RG" | "SL" | "PU" | "PB";
+    position_depth: "AF" | "BF" | number;
+    rate_freq: number;
+    level_mix: number;
   };
 }
 
 export interface ZnrSettings {
   isActive: boolean;
   settings: {
-    NR?: { threshold: number };
-    GT?: { threshold: number };
-    DG?: { threshold: number };
+    code: "NR" | "GT" | "DG";
+    threshold: number;
   };
 }
 
@@ -95,102 +53,70 @@ export interface DriveSettings {
     level: number;
   };
 }
+export interface EqSettings {
+  isActive: boolean;
+  settings: {
+    bass: number;
+    middle: number;
+    treble: number;
+  };
+}
+type EtEqSettings = {
+  lo_mid: number;
+  presence: number;
+  harmonics: number;
+};
+type CbEqSettings = {
+  mic_type: "Co" | "DY";
+  mic_pos: number;
+};
 
 export interface ExtraEqSettings {
   isActive: boolean;
   settings: {
-    ET?: {
-      lo_mid: number;
-      presence: number;
-      harmonics: number;
-    };
-    CB?: {
-      mic_type: "Co" | "DY";
-      mic_pos: number;
-    };
-  };
+    code: "ET" | "CB";
+  } & (EtEqSettings extends { code: "ET" }
+    ? EtEqSettings
+    : CbEqSettings extends { code: "CB" }
+    ? CbEqSettings
+    : never);
 }
 
 export interface ModSfxSettings {
   isActive: boolean;
   settings: {
-    CH?: {
-      depth: number;
-      rate: number;
-      reso: number;
-    };
-    SC?: {
-      depth: number;
-      rate: number;
-      reso: number;
-    };
-    FL?: {
-      depth: number;
-      rate: number;
-      reso: number;
-    };
-    PT?: {
-      depth: number;
-      rate: number;
-      reso: number;
-    };
-    PP?: {
-      depth: number;
-      rate: "UP" | "DN";
-      reso: number;
-    };
-    UB?: {
-      depth: number;
-      rate: number;
-      reso: number;
-    };
-    ST?: {
-      depth: number;
-      rate: number;
-      reso: number;
-    };
-    DL?: {
-      depth: number;
-      rate: number;
-      reso: number;
-    };
-    TE?: {
-      depth: number;
-      rate: number;
-      reso: number;
-    };
-    DD?: {
-      depth: number;
-      rate: number;
-      reso: number;
-    };
-    DF?: {
-      depth: number;
-      rate: number;
-      reso: number;
-    };
-    NP?: {
-      depth: number;
-      rate: number;
-      reso: number;
-    };
-    HP?: {
-      depth: number;
-      rate:
-        | "C"
-        | "C#"
-        | "D"
-        | "D#"
-        | "E"
-        | "F"
-        | "F#"
-        | "G"
-        | "G#"
-        | "A"
-        | "A#"
-        | "B";
-      reso: number;
-    };
+    code:
+      | "CH"
+      | "SC"
+      | "FL"
+      | "PT"
+      | "PP"
+      | "UB"
+      | "ST"
+      | "DL"
+      | "TE"
+      | "DD"
+      | "DF"
+      | "NP"
+      | "HP";
+    depth: number;
+    rate:
+      | number
+      | "UP"
+      | "DN"
+      | "C"
+      | "C#"
+      | "D"
+      | "D#"
+      | "E"
+      | "F"
+      | "F#"
+      | "G"
+      | "G#"
+      | "A"
+      | "A#"
+      | "B";
+    reso: number;
   };
 }
 
@@ -203,43 +129,14 @@ export interface DelaySettings {
     mix: number;
   };
 }
-export interface EqSettings {
-  isActive: boolean;
-  settings: {
-    bass: number;
-    middle: number;
-    treble: number;
-  };
-}
 
 interface ReverbSettings {
   isActive: boolean;
   settings: {
-    HL?: {
-      decay: number;
-      tone: number;
-      mix: number;
-    };
-    RN?: {
-      decay: number;
-      tone: number;
-      mix: number;
-    };
-    SP?: {
-      decay: number;
-      tone: number;
-      mix: number;
-    };
-    ER?: {
-      decay: number;
-      tone: number;
-      mix: number;
-    };
-    ND?: {
-      decay: number;
-      tone: number;
-      mix: number;
-    };
+    code: "HL" | "RN" | "SP" | "ER" | "ND";
+    decay: number;
+    tone: number;
+    mix: number;
   };
 }
 

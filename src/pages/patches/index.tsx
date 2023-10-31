@@ -58,7 +58,7 @@ const Home = ({ patches }: HomeProps) => {
     }
   }, [filter, patches]);
 
-  // console.log(filteredPatches);
+  console.log(filteredPatches);
 
   return (
     <>
