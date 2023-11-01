@@ -130,7 +130,7 @@ export interface DelaySettings {
   };
 }
 
-interface ReverbSettings {
+export interface ReverbSettings {
   isActive: boolean;
   settings: {
     code: "HL" | "RN" | "SP" | "ER" | "ND";

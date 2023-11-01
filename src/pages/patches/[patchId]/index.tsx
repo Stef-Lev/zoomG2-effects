@@ -24,6 +24,10 @@ const PatchDetailPage = ({ patch }: PatchDetailPageProps) => {
   ];
   const patchSections = Object.entries(patch.effects);
   console.log(patchSections);
+  const activeIndices = patchSections
+    .map(([_, data], index) => (data.isActive ? index : -1))
+    .filter(index => index !== -1);
+
   return (
     <Box>
       <DetailsHeader />
@@ -31,8 +35,11 @@ const PatchDetailPage = ({ patch }: PatchDetailPageProps) => {
         <Heading as="h3" textAlign="center" color="highlightBlue">
           {patch.name}
         </Heading>
-        <Accordion allowMultiple>
-          <EffectItem />
+
+        <Accordion allowMultiple defaultIndex={activeIndices}>
+          {patchSections.map(([title, data]) => {
+            return <EffectItem key={title} title={title} data={data} />;
+          })}
         </Accordion>
       </Container>
     </Box>
