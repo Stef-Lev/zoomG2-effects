@@ -3,7 +3,7 @@ import { GetServerSidePropsContext } from "next";
 import { IPatch } from "@/types/types";
 import DetailsHeader from "@/components/DetailsHeader";
 import { Box, Container, Heading, Accordion } from "@chakra-ui/react";
-import PowerLight from "@/components/PowerLight";
+import PedalCode from "@/components/PedalCode";
 import EffectItem from "@/components/EffectItem";
 
 interface PatchDetailPageProps {
@@ -31,10 +31,23 @@ const PatchDetailPage = ({ patch }: PatchDetailPageProps) => {
   return (
     <Box>
       <DetailsHeader />
-      <Container pt="50px">
-        <Heading as="h3" textAlign="center" color="highlightBlue">
-          {patch.name}
-        </Heading>
+      <Container pt="50px" pb="60px">
+        <Box display="flex" gap="10px" marginBottom="20px" alignItems="center">
+          <Box flexBasis="85%">
+            <Heading
+              as="h3"
+              fontSize="20px"
+              textAlign="center"
+              fontStyle="italic"
+              color="highlightBlue"
+            >
+              {patch.name}
+            </Heading>
+          </Box>
+          <Box flexBasis="15%">
+            <PedalCode code={patch.pedalCode} />
+          </Box>
+        </Box>
 
         <Accordion allowMultiple defaultIndex={activeIndices}>
           {patchSections.map(([title, data]) => {

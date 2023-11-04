@@ -13,7 +13,7 @@ const PedalCode = ({ code }: PedalCodeProps) => {
         alignItems="center"
         w="50px"
         h="45px"
-        color="#727688"
+        color="document"
       >
         <FaFileAlt size="30px" />
       </Box>

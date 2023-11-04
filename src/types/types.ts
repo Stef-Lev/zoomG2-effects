@@ -161,3 +161,34 @@ export interface IDBConnection {
   connection: Connection;
   closeConnection: () => Promise<void>;
 }
+
+export type AllSettings =
+  | CompressorSettings
+  | WahEfxSettings
+  | ZnrSettings
+  | DriveSettings
+  | EqSettings
+  | ExtraEqSettings
+  | ModSfxSettings
+  | DelaySettings
+  | ReverbSettings;
+
+export type SettingsObject =
+  | CompressorSettings["settings"]
+  | WahEfxSettings["settings"]
+  | ZnrSettings["settings"]
+  | DriveSettings["settings"]
+  | EqSettings["settings"]
+  | ExtraEqSettings["settings"]
+  | ModSfxSettings["settings"]
+  | DelaySettings["settings"]
+  | ReverbSettings["settings"];
+
+export type SettingsWithCode =
+  | WahEfxSettings
+  | ZnrSettings
+  | DriveSettings
+  | ExtraEqSettings
+  | ModSfxSettings
+  | DelaySettings
+  | ReverbSettings;

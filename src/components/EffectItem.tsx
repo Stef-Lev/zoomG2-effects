@@ -3,33 +3,16 @@ import {
   AccordionButton,
   Box,
   AccordionPanel,
-  Text
+  Heading
 } from "@chakra-ui/react";
+import Settings from "./Settings";
 import PowerLight from "./PowerLight";
-import {
-  CompressorSettings,
-  WahEfxSettings,
-  ZnrSettings,
-  DriveSettings,
-  EqSettings,
-  ExtraEqSettings,
-  ModSfxSettings,
-  DelaySettings,
-  ReverbSettings
-} from "@/types/types";
+import EffectTitle from "./EffectTitle";
+import { AllSettings } from "@/types/types";
 
 interface EffectItemProps {
   title: string;
-  data:
-    | CompressorSettings
-    | WahEfxSettings
-    | ZnrSettings
-    | DriveSettings
-    | EqSettings
-    | ExtraEqSettings
-    | ModSfxSettings
-    | DelaySettings
-    | ReverbSettings;
+  data: AllSettings;
 }
 
 const EffectItem = ({ title, data }: EffectItemProps) => {
@@ -37,21 +20,16 @@ const EffectItem = ({ title, data }: EffectItemProps) => {
     <AccordionItem isDisabled={!data.isActive}>
       {({ isExpanded }) => (
         <>
-          <h2>
+          <Heading>
             <AccordionButton>
               <Box as="span" flex="1" textAlign="left">
-                <Text textTransform="capitalize" color="#f5ea9f">
-                  {title}
-                </Text>
+                <EffectTitle title={title} data={data} />
               </Box>
               <PowerLight isActive={isExpanded} />
             </AccordionButton>
-          </h2>
+          </Heading>
           <AccordionPanel pb={4}>
-            {Object.values(data.settings).map(item => {
-              console.log(item);
-              return <p key={item}>{item}</p>;
-            })}
+            <Settings settings={data.settings} />
           </AccordionPanel>
         </>
       )}
