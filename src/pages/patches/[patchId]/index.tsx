@@ -5,25 +5,15 @@ import DetailsHeader from "@/components/DetailsHeader";
 import { Box, Container, Heading, Accordion } from "@chakra-ui/react";
 import PedalCode from "@/components/PedalCode";
 import EffectItem from "@/components/EffectItem";
+import EditButton from "@/components/EditButton";
 
 interface PatchDetailPageProps {
   patch: IPatch;
 }
 
 const PatchDetailPage = ({ patch }: PatchDetailPageProps) => {
-  const arr = [
-    "compressor",
-    "wah_efx",
-    "znr",
-    "drive",
-    "eq",
-    "extra_eq",
-    "mod_sfx",
-    "delay",
-    "reverb"
-  ];
   const patchSections = Object.entries(patch.effects);
-  console.log(patchSections);
+  console.log({ patch, patchSections });
   const activeIndices = patchSections
     .map(([_, data], index) => (data.isActive ? index : -1))
     .filter(index => index !== -1);
@@ -32,7 +22,7 @@ const PatchDetailPage = ({ patch }: PatchDetailPageProps) => {
     <Box>
       <DetailsHeader />
       <Container pt="50px" pb="60px">
-        <Box display="flex" gap="10px" marginBottom="20px" alignItems="center">
+        <Box display="flex" gap="10px" marginBottom="10px" alignItems="center">
           <Box flexBasis="85%">
             <Heading
               as="h3"
@@ -48,6 +38,7 @@ const PatchDetailPage = ({ patch }: PatchDetailPageProps) => {
             <PedalCode code={patch.pedalCode} />
           </Box>
         </Box>
+        <EditButton id={patch._id} />
 
         <Accordion allowMultiple defaultIndex={activeIndices}>
           {patchSections.map(([title, data]) => {

@@ -3,7 +3,6 @@ import { GetServerSidePropsContext } from "next";
 import { getAllMethod } from "@/helpers/services";
 import { IPatch } from "@/types/types";
 import PatchItem from "@/components/PatchItem";
-import ScrollTopButton from "@/components/ScrollTopButton";
 import { useMemo, useState } from "react";
 import FiltersDropdown from "@/components/FIltersDropdown";
 
@@ -85,7 +84,6 @@ const Home = ({ patches }: HomeProps) => {
             filteredPatches.map(patch => (
               <PatchItem key={patch._id} patch={patch} />
             ))}
-          <ScrollTopButton />
         </Box>
       </Box>
     </>

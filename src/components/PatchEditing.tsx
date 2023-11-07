@@ -1,25 +1,33 @@
 import { useState } from "react";
 import {
   Box,
-  Grid,
-  GridItem,
-  Input,
-  Flex,
   Button,
+  Heading,
+  Input,
   useColorModeValue,
   useDisclosure
 } from "@chakra-ui/react";
+import showMsg from "@/helpers/showMsg";
 import { useRouter } from "next/router";
 import { postMethod, updateMethod } from "@/helpers/services";
 import isDeepEqual from "deep-equal";
 import { useNavigationObserver } from "@/hooks/useNavigationObserver";
+import { Patch } from "@/types/types";
+import AlertModal from "./AlertModal";
+import DropdownMenu from "./inputs/DropdownMenu";
+import validationValues from "@/helpers/validationValues";
+import Number from "@/components/inputs/InputNumber";
 
-const PatchEditing = ({ type, record, user }) => {
-  const [recordObj, setRecordObj] = useState<IRecordEditData>(record);
-  const [password, setPassword] = useState<string>(record.password);
+type PatchEditingProps = {
+  type: "new" | "edit";
+  patch: Patch;
+};
+
+const PatchEditing = ({ type, patch }: PatchEditingProps) => {
+  const [patchObj, setPatchObj] = useState(patch);
   const [isDirty, setIsDirty] = useState<boolean>(false);
-  const defaultRecord = { ...record, password };
-  const title = type === "new" ? "New Record" : "Edit Record";
+  const defaultPatch = patch;
+  const title = type === "new" ? "New Patch" : "Edit Patch";
   const router = useRouter();
   const { recordId } = router.query;
   const buttonBg = useColorModeValue("#dbdbdb", "#2a2c38");
@@ -30,91 +38,74 @@ const PatchEditing = ({ type, record, user }) => {
   });
 
   const setDirtyInputs = () => {
-    if (!isDeepEqual(defaultRecord, { ...recordObj, password })) {
+    if (!isDeepEqual(defaultPatch, patchObj)) {
       setIsDirty(true);
     } else {
       setIsDirty(false);
     }
   };
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setRecordObj(prevState => ({
-      ...prevState,
-      [e.target.id]: e.target.value
-    }));
-    setDirtyInputs();
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    section: "info" | "effects"
+  ) => {
+    if (section === "info") {
+      setPatchObj(prevState => ({
+        ...prevState,
+        [e.target.id]: e.target.value
+      }));
+      setDirtyInputs();
+    }
   };
+  // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setPatchObj(prevState => ({
+  //     ...prevState,
+  //     [e.target.id]: e.target.value
+  //   }));
+  //   setDirtyInputs();
+  // };
 
   const handleSubmit = () => {
     setIsDirty(false);
-    if (type === "new") {
-      postMethod(`/api/user/${user.id}/records`, {
-        ...recordObj,
-        password
-      })
-        .then(() => router.push("/"))
-        .then(() => showMsg("Record saved", { type: "success" }))
-        .catch(() => showMsg("Something went wrong", { type: "error" }));
-    } else {
-      updateMethod(`/api/user/${user.id}/records/${recordId}`, {
-        ...recordObj,
-        password
-      })
-        .then(() => router.push("/"))
-        .then(() => showMsg("Record updated", { type: "success" }))
-        .catch(() => showMsg("Something went wrong", { type: "error" }));
-    }
+    console.log("handle submit");
+    // if (type === "new") {
+    //   postMethod(`/api/user/${user.id}/records`, {
+    //     ...recordObj,
+    //     password
+    //   })
+    //     .then(() => router.push("/"))
+    //     .then(() => showMsg("Record saved", { type: "success" }))
+    //     .catch(() => showMsg("Something went wrong", { type: "error" }));
+    // } else {
+    //   updateMethod(`/api/user/${user.id}/records/${recordId}`, {
+    //     ...recordObj,
+    //     password
+    //   })
+    //     .then(() => router.push("/"))
+    //     .then(() => showMsg("Record updated", { type: "success" }))
+    //     .catch(() => showMsg("Something went wrong", { type: "error" }));
+    // }
   };
-
+  console.log({ patchObj });
   return (
     <Box py="60px">
-      <TopNav title={title} type="backAndTitle" />
+      <Heading as="h3">{title}</Heading>
       <Box>
-        <Grid gridTemplateColumns="3fr 6fr" gap="10px" py="10px">
-          <GridItem w="100%" h="10">
-            <Flex align="center" h="100%">
-              Title
-            </Flex>
-          </GridItem>
-          <GridItem w="100%" h="10">
-            <Input
-              id="title"
-              value={recordObj.title}
-              placeholder="Record title"
-              onChange={handleInputChange}
-              _focusVisible={{ border: "2px solid", borderColor: "teal.200" }}
-            />
-          </GridItem>
-          <GridItem w="100%" h="10">
-            <Flex align="center" h="100%">
-              Url
-            </Flex>
-          </GridItem>
-          <GridItem w="100%" h="10">
-            <Input
-              id="url"
-              value={recordObj.url}
-              placeholder="Website url (optional)"
-              onChange={handleInputChange}
-              _focusVisible={{ border: "2px solid", borderColor: "teal.200" }}
-            />
-          </GridItem>
-          <GridItem w="100%" h="10">
-            <Flex align="center" h="100%">
-              Username
-            </Flex>
-          </GridItem>
-          <GridItem w="100%" h="10">
-            <Input
-              id="username"
-              value={recordObj.username}
-              placeholder="Username or email"
-              onChange={handleInputChange}
-              _focusVisible={{ border: "2px solid", borderColor: "teal.200" }}
-            />
-          </GridItem>
-        </Grid>
+        <Input
+          id="name"
+          value={patchObj.name}
+          placeholder="Record title"
+          onChange={ev => handleInputChange(ev, "info")}
+          _focusVisible={{ border: "2px solid", borderColor: "teal.200" }}
+        />
+        <DropdownMenu
+          id="pedalCode"
+          options={validationValues["pedalCode"]}
+          value={patchObj.pedalCode}
+          handleChange={ev => handleInputChange(ev, "info")}
+        />
       </Box>
-      <PasswordEditor password={password} setPassword={setPassword} />
+
       <Box mt="20px">
         <Button
           type="submit"

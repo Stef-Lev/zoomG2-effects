@@ -139,7 +139,22 @@ export interface ReverbSettings {
     mix: number;
   };
 }
-
+export type Patch = {
+  name: string;
+  inPedal: boolean;
+  pedalCode: string;
+  effects: {
+    compressor: CompressorSettings;
+    wah_efx: WahEfxSettings;
+    znr: ZnrSettings;
+    drive: DriveSettings;
+    eq: EqSettings;
+    extra_eq: ExtraEqSettings;
+    mod_sfx: ModSfxSettings;
+    delay: DelaySettings;
+    reverb: ReverbSettings;
+  };
+};
 export interface IPatch extends mongoose.Document {
   name: string;
   inPedal: boolean;

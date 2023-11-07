@@ -4,6 +4,7 @@ import Loader from "./Loader";
 import ScrollToTop from "./ScrollToTop";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import ScrollTopButton from "./ScrollTopButton";
 
 const Layout = ({ children }: PropsWithChildren) => {
   const router = useRouter();
@@ -36,9 +37,10 @@ const Layout = ({ children }: PropsWithChildren) => {
       {loading ? (
         <Loader fullScreen />
       ) : (
-        <Container maxW="3xl" height="100vh" mb="90px">
+        <Container maxW="3xl" height="100vh">
           {children}
           <ScrollToTop />
+          <ScrollTopButton />
         </Container>
       )}
     </>
