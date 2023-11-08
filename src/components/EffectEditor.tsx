@@ -4,29 +4,33 @@ import {
   Box,
   AccordionPanel
 } from "@chakra-ui/react";
-import Settings from "./Settings";
 import PowerLight from "./PowerLight";
-import EffectTitle from "./EffectTitle";
 import { AllSettings } from "@/types/types";
+import { effectsTexts } from "@/helpers/textTransform";
+import validationValues from "@/helpers/validationValues";
+import DropdownMenu from "./inputs/DropdownMenu";
 
-interface EffectItemProps {
+interface EffectEditorProps {
   title: string;
   data: AllSettings;
 }
 
-const EffectItem = ({ title, data }: EffectItemProps) => {
+const EffectEditor = ({ title, data }: EffectEditorProps) => {
+  console.log(validationValues[title as keyof typeof validationValues]);
+
   return (
-    <AccordionItem isDisabled={!data.isActive}>
+    <AccordionItem>
       {({ isExpanded }) => (
         <>
           <AccordionButton>
             <Box as="span" flex="1" textAlign="left">
-              <EffectTitle title={title} data={data} />
+              <h2>{effectsTexts[title as keyof typeof effectsTexts]}</h2>
             </Box>
             <PowerLight isActive={isExpanded} />
           </AccordionButton>
           <AccordionPanel pb={4}>
-            <Settings settings={data.settings} />
+            <Box>{JSON.stringify(data)}</Box>
+            <Box></Box>
           </AccordionPanel>
         </>
       )}
@@ -34,4 +38,4 @@ const EffectItem = ({ title, data }: EffectItemProps) => {
   );
 };
 
-export default EffectItem;
+export default EffectEditor;

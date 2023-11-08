@@ -5,8 +5,10 @@ import {
   Heading,
   Input,
   useColorModeValue,
+  Accordion,
   useDisclosure
 } from "@chakra-ui/react";
+import EffectEditor from "./EffectEditor";
 import showMsg from "@/helpers/showMsg";
 import { useRouter } from "next/router";
 import { postMethod, updateMethod } from "@/helpers/services";
@@ -30,12 +32,16 @@ const PatchEditing = ({ type, patch }: PatchEditingProps) => {
   const title = type === "new" ? "New Patch" : "Edit Patch";
   const router = useRouter();
   const { recordId } = router.query;
-  const buttonBg = useColorModeValue("#dbdbdb", "#2a2c38");
+  const buttonBg = "#dbdbdb";
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigationObserver({
     shouldStopNavigation: isDirty,
     onNavigate: () => onOpen()
   });
+  const patchSections = Object.entries(defaultPatch.effects);
+  const activeIndices = patchSections
+    .map(([_, data], index) => (data.isActive ? index : -1))
+    .filter(index => index !== -1);
 
   const setDirtyInputs = () => {
     if (!isDeepEqual(defaultPatch, patchObj)) {
@@ -104,6 +110,11 @@ const PatchEditing = ({ type, patch }: PatchEditingProps) => {
           value={patchObj.pedalCode}
           handleChange={ev => handleInputChange(ev, "info")}
         />
+        <Accordion allowMultiple defaultIndex={activeIndices}>
+          {patchSections.map(([title, data]) => {
+            return <EffectEditor key={title} title={title} data={data} />;
+          })}
+        </Accordion>
       </Box>
 
       <Box mt="20px">
