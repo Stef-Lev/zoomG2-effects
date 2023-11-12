@@ -1,5 +1,6 @@
 export const validationValues = {
   pedalCode: [
+    "",
     "01",
     "02",
     "03",
@@ -143,7 +144,9 @@ export const validationValues = {
   },
   znr: {
     code: ["NR", "GT", "DG"],
-    threshold: { min: 1, max: 16 }
+    NR: { threshold: { min: 1, max: 16 } },
+    GT: { threshold: { min: 1, max: 16 } },
+    DG: { threshold: { min: 1, max: 16 } }
   },
   drive: {
     code: [
@@ -165,9 +168,91 @@ export const validationValues = {
       "DF",
       "AC"
     ],
-    gain: { min: 1, max: 100 },
-    tone: { min: 0, max: 10 },
-    level: { min: 1, max: 100 }
+    FC: {
+      gain: { min: 1, max: 100 },
+      tone: { min: 0, max: 10 },
+      level: { min: 1, max: 100 }
+    },
+    CA: {
+      gain: { min: 1, max: 100 },
+      tone: { min: 0, max: 10 },
+      level: { min: 1, max: 100 }
+    },
+    JC: {
+      gain: { min: 1, max: 100 },
+      tone: { min: 0, max: 10 },
+      level: { min: 1, max: 100 }
+    },
+    NC: {
+      gain: { min: 1, max: 100 },
+      tone: { min: 0, max: 10 },
+      level: { min: 1, max: 100 }
+    },
+    BL: {
+      gain: { min: 1, max: 100 },
+      tone: { min: 0, max: 10 },
+      level: { min: 1, max: 100 }
+    },
+    BC: {
+      gain: { min: 1, max: 100 },
+      tone: { min: 0, max: 10 },
+      level: { min: 1, max: 100 }
+    },
+    ND: {
+      gain: { min: 1, max: 100 },
+      tone: { min: 0, max: 10 },
+      level: { min: 1, max: 100 }
+    },
+    BG: {
+      gain: { min: 1, max: 100 },
+      tone: { min: 0, max: 10 },
+      level: { min: 1, max: 100 }
+    },
+    PU: {
+      gain: { min: 1, max: 100 },
+      tone: { min: 0, max: 10 },
+      level: { min: 1, max: 100 }
+    },
+    OD: {
+      gain: { min: 1, max: 100 },
+      tone: { min: 0, max: 10 },
+      level: { min: 1, max: 100 }
+    },
+    GU: {
+      gain: { min: 1, max: 100 },
+      tone: { min: 0, max: 10 },
+      level: { min: 1, max: 100 }
+    },
+    HB: {
+      gain: { min: 1, max: 100 },
+      tone: { min: 0, max: 10 },
+      level: { min: 1, max: 100 }
+    },
+    FF: {
+      gain: { min: 1, max: 100 },
+      tone: { min: 0, max: 10 },
+      level: { min: 1, max: 100 }
+    },
+    NT: {
+      gain: { min: 1, max: 100 },
+      tone: { min: 0, max: 10 },
+      level: { min: 1, max: 100 }
+    },
+    ED: {
+      gain: { min: 1, max: 100 },
+      tone: { min: 0, max: 10 },
+      level: { min: 1, max: 100 }
+    },
+    DF: {
+      gain: { min: 1, max: 100 },
+      tone: { min: 0, max: 10 },
+      level: { min: 1, max: 100 }
+    },
+    AC: {
+      gain: { min: 1, max: 100 },
+      tone: { min: 0, max: 10 },
+      level: { min: 1, max: 100 }
+    }
   },
   eq: {
     bass: { min: -12, max: 12 },
@@ -270,9 +355,21 @@ export const validationValues = {
   },
   delay: {
     code: ["DL", "PD", "EC"],
-    time: { min: 1, max: 100 },
-    feedback: { min: 1, max: 100 },
-    mix: { min: 1, max: 100 }
+    DL: {
+      time: { min: 1, max: 100 },
+      feedback: { min: 1, max: 100 },
+      mix: { min: 1, max: 100 }
+    },
+    PD: {
+      time: { min: 1, max: 100 },
+      feedback: { min: 1, max: 100 },
+      mix: { min: 1, max: 100 }
+    },
+    EC: {
+      time: { min: 1, max: 100 },
+      feedback: { min: 1, max: 100 },
+      mix: { min: 1, max: 100 }
+    }
   },
   reverb: {
     code: ["HL", "RN", "SP", "ER", "ND"],
