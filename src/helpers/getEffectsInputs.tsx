@@ -8,10 +8,23 @@ export const getEffectsInputs = (
   settings: AllSettings["settings"]
 ) => {
   const iterableSettings = Object.entries(settings);
+  // console.log({ settings, iterableSettings });
   // console.log(title, settings);
   if (Object.hasOwn(settings, "code")) {
-    console.log(validationValues[title][settings.code]);
+    const validations =
+      validationValues[title as keyof typeof validationValues][settings.code];
+    console.log(validations);
+    Object.entries(validations).map(([title, settings]) => {
+      if (Array.isArray(settings)) {
+        return <DropdownMenu key={title} id={title} options={settings} />;
+      } else {
+        return null;
+      }
+    });
   } else {
-    console.log(validationValues[title]);
+    const validations =
+      validationValues[title as keyof typeof validationValues];
+    console.log(validations);
+    return null;
   }
 };

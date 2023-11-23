@@ -15,7 +15,13 @@ type InputNumberProps = {
 
 const InputNumber = ({ id, min, max, defaultValue }: InputNumberProps) => {
   return (
-    <NumberInput defaultValue={defaultValue || ""} id={id} min={min} max={max}>
+    <NumberInput
+      defaultValue={defaultValue || ""}
+      id={id}
+      min={min}
+      max={max}
+      width="90px"
+    >
       <NumberInputField />
       <NumberInputStepper>
         <NumberIncrementStepper />

@@ -5,6 +5,7 @@ import {
   Heading,
   Input,
   useColorModeValue,
+  Text,
   Accordion,
   useDisclosure
 } from "@chakra-ui/react";
@@ -92,11 +93,14 @@ const PatchEditing = ({ type, patch }: PatchEditingProps) => {
     //     .catch(() => showMsg("Something went wrong", { type: "error" }));
     // }
   };
-  console.log({ patchObj });
+
   return (
     <Box py="60px">
-      <Heading as="h3">{title}</Heading>
-      <Box>
+      <Heading as="h3" mb="20px">
+        {title}
+      </Heading>
+      <Box display="flex" flexDirection="column" gap="10px">
+        <Text>Title</Text>
         <Input
           id="name"
           value={patchObj.name}
@@ -104,6 +108,7 @@ const PatchEditing = ({ type, patch }: PatchEditingProps) => {
           onChange={ev => handleInputChange(ev, "info")}
           _focusVisible={{ border: "2px solid", borderColor: "teal.200" }}
         />
+        <Text>Pedal Code</Text>
         <DropdownMenu
           id="pedalCode"
           options={validationValues["pedalCode"]}
