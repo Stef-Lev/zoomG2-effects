@@ -37,11 +37,11 @@ const Layout = ({ children }: PropsWithChildren) => {
       {loading ? (
         <Loader fullScreen />
       ) : (
-        <Container maxW="3xl" height="100vh">
+        <>
           {children}
           <ScrollToTop />
           <ScrollTopButton />
-        </Container>
+        </>
       )}
     </>
   );

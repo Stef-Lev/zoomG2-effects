@@ -21,8 +21,14 @@ const PatchDetailPage = ({ patch }: PatchDetailPageProps) => {
   return (
     <Box>
       <DetailsHeader />
-      <Container pt="50px" pb="60px">
-        <Box display="flex" gap="10px" marginBottom="10px" alignItems="center">
+      <Container maxW="3xl" height="100vh">
+        <Box
+          display="flex"
+          gap="10px"
+          marginBottom="10px"
+          alignItems="center"
+          py="8px"
+        >
           <Box flexBasis="85%">
             <Heading
               as="h3"

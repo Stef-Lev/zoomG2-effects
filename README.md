@@ -1,3 +1,3 @@
-* Create schema for each patch
-* Create basic UI piece for preset
-*
+- Create schema for each patch
+- Create basic UI piece for preset
+- Fix edit page for creating new and editing

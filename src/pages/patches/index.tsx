@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Image, Center } from "@chakra-ui/react";
+import { Box, Flex, Heading, Image, Center, Container } from "@chakra-ui/react";
 import { GetServerSidePropsContext } from "next";
 import { getAllMethod } from "@/helpers/services";
 import { IPatch } from "@/types/types";
@@ -60,8 +60,13 @@ const Home = ({ patches }: HomeProps) => {
   console.log(filteredPatches);
 
   return (
-    <>
-      <Box display="flex" flexDirection="column" alignItems="center">
+    <Container maxW="3xl" height="100vh">
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        color="white"
+      >
         <Heading as="h1">ZOOM G2 EFFECTS</Heading>
         <Center>
           <Image alt="pedal image" w="200px" src="/pedal.png" />
@@ -86,7 +91,7 @@ const Home = ({ patches }: HomeProps) => {
             ))}
         </Box>
       </Box>
-    </>
+    </Container>
   );
 };
 export default Home;

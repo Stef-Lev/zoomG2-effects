@@ -5,8 +5,8 @@ import { FiArrowUp } from "react-icons/fi";
 const ScrollTopButton = () => {
   const [showButton, setShowButton] = useState<boolean>(false);
   const [opacity, setOpacity] = useState<number>(0);
-  const ScrollStart = 200;
-  const ScrollEnd = 300;
+  const ScrollStart = 300;
+  const ScrollEnd = 400;
 
   const handleScrollTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -35,26 +35,26 @@ const ScrollTopButton = () => {
     <>
       {showButton && (
         <Flex
-          position="sticky"
-          bottom="30px"
+          position="fixed"
+          bottom="16px"
+          right="16px"
           zIndex={1001}
           justifyContent="flex-end"
         >
-          <Box>
-            <Button
-              w="60px"
-              h="60px"
-              borderRadius="50px"
-              background="pedalRed.100"
-              color="white"
-              _active={{ background: "pedalRed.200" }}
-              _hover={{ background: "pedalRed.200" }}
-              opacity={opacity}
-              onClick={handleScrollTop}
-            >
-              <FiArrowUp size="30px" />
-            </Button>
-          </Box>
+          <Button
+            w="40px"
+            h="40px"
+            borderRadius="8px"
+            padding="0"
+            background="pedalRed.100"
+            color="white"
+            _active={{ background: "pedalRed.200" }}
+            _hover={{ background: "pedalRed.200" }}
+            opacity={opacity}
+            onClick={handleScrollTop}
+          >
+            <FiArrowUp size="24px" />
+          </Button>
         </Flex>
       )}
     </>
