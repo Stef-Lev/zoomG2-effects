@@ -1,18 +1,22 @@
 import { GetServerSidePropsContext } from "next";
-import { Box } from "@chakra-ui/react";
+import { Container } from "@chakra-ui/react";
 import { getOneMethod } from "@/helpers/services";
 import PatchEditing from "@/components/PatchEditing";
+import HeaderWithNavigation from "@/components/HeaderWithNavigation";
 
 import { Patch } from "@/types/types";
 interface EditPageProps {
   patch: Patch;
 }
 const EditPage = ({ patch }: EditPageProps) => {
-  console.log(patch);
+  console.log({ patch });
   return (
-    <Box>
-      <PatchEditing type="edit" patch={patch} />
-    </Box>
+    <>
+      <HeaderWithNavigation />
+      <Container maxW="3xl">
+        <PatchEditing type="edit" patch={patch} />
+      </Container>
+    </>
   );
 };
 

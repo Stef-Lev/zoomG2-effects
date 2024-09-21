@@ -1,7 +1,7 @@
 import { getOneMethod } from "@/helpers/services";
 import { GetServerSidePropsContext } from "next";
 import { IPatch } from "@/types/types";
-import DetailsHeader from "@/components/DetailsHeader";
+import HeaderWithNavigation from "@/components/HeaderWithNavigation";
 import { Box, Container, Heading, Accordion } from "@chakra-ui/react";
 import PedalCode from "@/components/PedalCode";
 import EffectItem from "@/components/EffectItem";
@@ -19,9 +19,9 @@ const PatchDetailPage = ({ patch }: PatchDetailPageProps) => {
     .filter(index => index !== -1);
 
   return (
-    <Box>
-      <DetailsHeader />
-      <Container maxW="3xl" height="100vh">
+    <Box mb="60px">
+      <HeaderWithNavigation />
+      <Container maxW="3xl">
         <Box
           display="flex"
           gap="10px"

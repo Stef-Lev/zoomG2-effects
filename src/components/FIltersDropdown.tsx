@@ -26,7 +26,6 @@ const FiltersDropdown = ({
         _hover={{ background: "#2e3441", cursor: "pointer" }}
         _focus={{ background: "#2e3441", cursor: "pointer", outline: "none" }}
         onChange={e => setActiveFilter(e.currentTarget.value)}
-        _expanded={{ background: "red" }}
       >
         {filterTypes.map(filter => (
           <option

@@ -60,7 +60,7 @@ const Home = ({ patches }: HomeProps) => {
   console.log(filteredPatches);
 
   return (
-    <Container maxW="3xl" height="100vh">
+    <Container maxW="3xl">
       <Box
         display="flex"
         flexDirection="column"

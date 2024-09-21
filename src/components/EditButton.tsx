@@ -11,7 +11,12 @@ const EditButton = ({ id }: EditButtonProps) => {
     <Box display="flex" marginBottom="10px" fontWeight="normal">
       <Button
         size="sm"
-        variant="outline"
+        variant="filled"
+        background="#2e3441"
+        color="white"
+        fontWeight="hairline"
+        _hover={{ background: "#2e3441", cursor: "pointer" }}
+        _focus={{ background: "#2e3441", cursor: "pointer", outline: "none" }}
         onClick={() => router.push(`/patches/${id}/edit`)}
       >
         <Box mr="10px">

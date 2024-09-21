@@ -15,12 +15,12 @@ interface AlertModalProps {
   callBackAction: () => void;
 }
 
-const AlertModal: React.FC<AlertModalProps> = ({
+const AlertModal = ({
   type,
   isOpen,
   onClose,
   callBackAction
-}) => {
+}: AlertModalProps) => {
   const cancelRef = useRef<HTMLButtonElement | null>(null);
 
   const onClickCancelRef = () => {

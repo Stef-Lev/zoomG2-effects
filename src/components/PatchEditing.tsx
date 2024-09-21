@@ -75,6 +75,8 @@ const PatchEditing = ({ type, patch }: PatchEditingProps) => {
   const handleSubmit = () => {
     setIsDirty(false);
     console.log("handle submit");
+    // Go back to the id page after submission
+    // router.push(window.location.pathname.replace("/edit", ""));
     // if (type === "new") {
     //   postMethod(`/api/user/${user.id}/records`, {
     //     ...recordObj,
@@ -95,7 +97,7 @@ const PatchEditing = ({ type, patch }: PatchEditingProps) => {
   };
 
   return (
-    <Box py="60px">
+    <Box pb="60px">
       <Heading as="h3" mb="20px">
         {title}
       </Heading>
