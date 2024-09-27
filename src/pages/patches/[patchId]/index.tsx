@@ -19,7 +19,7 @@ const PatchDetailPage = ({ patch }: PatchDetailPageProps) => {
     .filter(index => index !== -1);
 
   return (
-    <Box mb="60px">
+    <Box mb="100px">
       <HeaderWithNavigation />
       <Container maxW="3xl">
         <Box

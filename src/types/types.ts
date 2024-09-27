@@ -155,6 +155,7 @@ export type Patch = {
     reverb: ReverbSettings;
   };
 };
+export type EffectTitleType = keyof Patch["effects"];
 export interface IPatch extends mongoose.Document {
   name: string;
   inPedal: boolean;

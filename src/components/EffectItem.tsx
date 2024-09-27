@@ -24,7 +24,13 @@ const EffectItem = ({ title, data }: EffectItemProps) => {
     >
       {({ isExpanded }) => (
         <>
-          <AccordionButton border="1px solid #141923" borderTopRadius="12px">
+          <AccordionButton
+            border="1px solid #141923"
+            borderTopRadius="12px"
+            sx={{
+              WebkitTapHighlightColor: "transparent"
+            }}
+          >
             <Box as="span" flex="1" textAlign="left">
               <EffectTitle title={title} data={data} />
             </Box>
