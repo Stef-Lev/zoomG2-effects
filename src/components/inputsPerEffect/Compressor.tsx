@@ -19,52 +19,55 @@ const Compressor = ({ title, settings }: Props) => {
       const validations = validationValues[title];
       console.log({ title, typedVal });
 
-      if (title === "compressor") {
-        switch (typedKey) {
-          case "sense":
-          case "level":
-            return (
-              <Box display="flex" alignItems="center" key={title} mb="10px">
-                <Text width="85px" mr="10px">
-                  {settingsTexts[typedKey]}
-                </Text>
-                <InputNumber
-                  id={typedKey}
-                  min={validations[typedKey as keyof typeof validations]["min"]}
-                  max={validations[typedKey as keyof typeof validations]["max"]}
-                  defaultValue={typedVal as number}
-                />
-              </Box>
-            );
-          case "attack":
-            return (
-              <Box display="flex" alignItems="center" key={title} mb="10px">
-                <Text width="85px" mr="10px">
-                  {settingsTexts[typedKey]}
-                </Text>
+      switch (typedKey) {
+        case "sense":
+        case "level":
+          return (
+            <Box
+              display="flex"
+              alignItems="center"
+              key={`${title}-${typedKey}`}
+              mb="10px"
+            >
+              <Text width="85px" mr="10px">
+                {settingsTexts[typedKey]}
+              </Text>
+              <InputNumber
+                id={typedKey}
+                min={validations[typedKey as keyof typeof validations]["min"]}
+                max={validations[typedKey as keyof typeof validations]["max"]}
+                defaultValue={typedVal as number}
+              />
+            </Box>
+          );
+        case "attack":
+          return (
+            <Box display="flex" alignItems="center" key={title} mb="10px">
+              <Text width="85px" mr="10px">
+                {settingsTexts[typedKey]}
+              </Text>
 
-                <DropdownMenu
-                  id={typedKey}
-                  options={validations[typedKey as keyof typeof validations]}
-                  value={typedVal as string}
-                  optionStyle={{ background: "#e2e8f0", color: "#1a202c" }}
-                  handleChange={() => {
-                    console.log("change");
-                  }}
-                />
-              </Box>
-            );
+              <DropdownMenu
+                id={typedKey}
+                options={validations[typedKey as keyof typeof validations]}
+                value={typedVal as string}
+                optionStyle={{ background: "#e2e8f0", color: "#1a202c" }}
+                handleChange={() => {
+                  console.log("change");
+                }}
+              />
+            </Box>
+          );
 
-          default:
-            return null;
-        }
+        default:
+          return null;
       }
     });
   };
   return (
-    <div>
-      <div>{renderInputs()}</div>
-    </div>
+    <Box>
+      <Box>{renderInputs()}</Box>
+    </Box>
   );
 };
 

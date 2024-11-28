@@ -20,6 +20,8 @@ import AlertModal from "./AlertModal";
 import DropdownMenu from "./inputs/DropdownMenu";
 import validationValues from "@/helpers/validationValues";
 import Number from "@/components/inputs/InputNumber";
+import { EffectTitleType } from "@/types/types";
+import { AllSettings } from "@/types/types";
 
 type PatchEditingProps = {
   type: "new" | "edit";
@@ -39,7 +41,9 @@ const PatchEditing = ({ type, patch }: PatchEditingProps) => {
     shouldStopNavigation: isDirty,
     onNavigate: () => onOpen()
   });
-  const patchSections = Object.entries(defaultPatch.effects);
+  const patchSections: [EffectTitleType, AllSettings][] = Object.entries(
+    defaultPatch.effects
+  );
   const activeIndices = patchSections
     .map(([_, data], index) => (data.isActive ? index : -1))
     .filter(index => index !== -1);
@@ -97,7 +101,7 @@ const PatchEditing = ({ type, patch }: PatchEditingProps) => {
   };
 
   return (
-    <Box pb="60px">
+    <Box pb="80px">
       <Heading as="h3" mb="20px">
         {title}
       </Heading>

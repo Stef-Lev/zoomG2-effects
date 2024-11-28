@@ -11,6 +11,7 @@ export const effectsTexts = {
 };
 
 export const settingsTexts = {
+  code: "Code",
   attack: "Attack",
   level: "Level",
   sense: "Sense",
